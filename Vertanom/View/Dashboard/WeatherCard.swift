@@ -12,7 +12,7 @@ struct WeatherCard: View {
             } else {
                 Text("Loading weather...")
                     .onAppear {
-                        viewModel.fetchWeather(latitude: 0.0, longitude: 0.0) // Default values, actual location is fetched in the view model
+                        viewModel.requestLocationAuthorization()
                     }
             }
         }
@@ -60,7 +60,7 @@ struct WeatherInfoView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 15))
         )
         .frame(maxWidth: .infinity)
-        .frame(minHeight: 170) // Ensure a minimum height but allow it to grow
+        .frame(minHeight: 170)
     }
 }
 
@@ -77,7 +77,7 @@ struct ErrorView: View {
                 .padding()
         }
         .frame(maxWidth: .infinity)
-        .frame(minHeight: 170) // Ensure a minimum height but allow it to grow
+        .frame(minHeight: 170)
         .background(
             Color(.systemBackground)
                 .blur(radius: 10)

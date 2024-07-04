@@ -1,6 +1,8 @@
 Vertanom
 
 **Abstract**
+
+
 This paper presents a two-part approach. Part 1 explores the application of Object-Oriented Programming
 (OOP) using the Apple Swift and SwiftUI Framework to address high demand of onions in the city,lack of land
 resources, higher inflation rates among basic goods and lack of innovative knowledge in agricultural

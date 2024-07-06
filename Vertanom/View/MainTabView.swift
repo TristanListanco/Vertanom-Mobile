@@ -13,7 +13,7 @@ struct MainTabView: View {
             DashboardView()
                 .tabItem { Label("Home", systemImage: "house") }
             Activity()
-                .tabItem { Label("Activity", systemImage: "antenna.radiowaves.left.and.right.circle") }
+                .tabItem { Label("Activity", systemImage: "gauge.with.needle") }
             ArticleView()
                 .tabItem { Label("Articles", systemImage: "newspaper") }
             About()

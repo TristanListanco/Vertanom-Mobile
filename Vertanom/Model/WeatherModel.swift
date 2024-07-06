@@ -77,13 +77,13 @@ struct WeatherModel: Identifiable, Codable {
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
-        case "shower rain", "rain":
+        case "shower rain", "light rain":
             return LinearGradient(
                 gradient: Gradient(colors: [.gray, .blue]),
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
-        case "thunderstorm":
+        case "thunderstorm", "moderate rain", "heavy rain":
             return LinearGradient(
                 gradient: Gradient(colors: [.darkGray, .black]),
                 startPoint: .topLeading,

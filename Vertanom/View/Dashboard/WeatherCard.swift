@@ -79,10 +79,18 @@ struct ErrorView: View {
         .frame(maxWidth: .infinity)
         .frame(minHeight: 170)
         .background(
-            Color(.systemBackground)
+            platformColorBackground
                 .blur(radius: 10)
                 .clipShape(RoundedRectangle(cornerRadius: 15))
         )
+    }
+    
+    private var platformColorBackground: Color {
+        #if os(macOS)
+        return Color(NSColor.windowBackgroundColor)
+        #else
+        return Color(UIColor.systemBackground)
+        #endif
     }
 }
 

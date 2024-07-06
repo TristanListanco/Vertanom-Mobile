@@ -25,10 +25,10 @@ struct About: View {
                             HStack {
                                 Image(systemName: "person.circle")
                                 Text(developer.name)
-                                   
+
                                 Spacer()
                             }
-                            .foregroundStyle(Color(UIColor.label))
+                            .foregroundStyle(Color.primary)
                         }
                     }
 
@@ -43,7 +43,8 @@ struct About: View {
                             Image(systemName: "bubble.and.pencil")
                             Text("Report an Issue")
                             Spacer()
-                        }.foregroundStyle(Color(UIColor.systemPurple))
+                        }
+                        .foregroundStyle(Color.purple)
                     }
                 }
 
@@ -54,18 +55,35 @@ struct About: View {
                         Spacer()
                     }
                 }
-                // Optional: Adds a grouped style to the list
-                .navigationTitle("About")
-                .sheet(isPresented: $isSheetPresented, content: {
-                    if let developer = selectedDeveloper {
-                        DeveloperDetailView(developer: developer)
-                            .presentationSizing(.form)
-                    }
-                })
-                .sheet(isPresented: $isReportIssuePresented) {
-                    ReportIssue()
+            }
+            .navigationTitle("About")
+            .sheet(isPresented: $isSheetPresented, content: {
+                if let developer = selectedDeveloper {
+                    DeveloperDetailView(developer: developer)
                         .presentationSizing(.form)
                 }
+            })
+            .sheet(isPresented: $isReportIssuePresented) {
+                ReportIssue()
+                    .presentationSizing(.form)
+            }
+            .formStyle(.grouped)
+            
+            // Platform-specific toolbar adjustments
+            .toolbar {
+                #if os(macOS)
+                ToolbarItem(placement: .navigation) {
+                    Button(action: { /* handle back action */ }) {
+                        Label("Back", systemImage: "chevron.left")
+                    }
+                }
+                #else
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: { /* handle action */ }) {
+                        Image(systemName: "ellipsis.circle")
+                    }
+                }
+                #endif
             }
         }
     }

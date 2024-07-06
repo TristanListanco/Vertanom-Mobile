@@ -66,7 +66,6 @@
 		63F5669E2C358B6600ED81D3 /* Vertanom_Watch_Watch_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F5669D2C358B6600ED81D3 /* Vertanom_Watch_Watch_AppTests.swift */; };
 		63F566A82C358B6600ED81D3 /* Vertanom_Watch_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F566A72C358B6600ED81D3 /* Vertanom_Watch_Watch_AppUITests.swift */; };
 		63F566AA2C358B6600ED81D3 /* Vertanom_Watch_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F566A92C358B6600ED81D3 /* Vertanom_Watch_Watch_AppUITestsLaunchTests.swift */; };
-		63F566AD2C358B6600ED81D3 /* Vertanom-Watch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 63F5668A2C358B6300ED81D3 /* Vertanom-Watch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,7 +113,6 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				63F566AD2C358B6600ED81D3 /* Vertanom-Watch Watch App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1054,9 +1052,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tristanlistanco.Vertanom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1090,9 +1088,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tristanlistanco.Vertanom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

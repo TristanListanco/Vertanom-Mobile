@@ -1,10 +1,3 @@
-//
-//  DeviceDetailView.swift
-//  Vertanom
-//
-//  Created by Tristan Listanco on 7/2/24.
-//
-
 import Charts
 import SwiftUI
 
@@ -15,9 +8,9 @@ struct SalesSummary: Identifiable, Equatable {
     var id: Date { weekday }
 }
 
-enum City {
-    case cupertino
-    case sanFrancisco
+enum City: String {
+    case cupertino = "Cupertino"
+    case sanFrancisco = "San Francisco"
 }
 
 func date(_ year: Int, _ month: Int, _ day: Int) -> Date {
@@ -29,20 +22,21 @@ func date(_ year: Int, _ month: Int, _ day: Int) -> Date {
 }
 
 let cupertinoData: [SalesSummary] = [
-    SalesSummary(weekday: date(2023, 5, 2), value: 74), // Last Monday
-    SalesSummary(weekday: date(2023, 5, 3), value: 62), // Last Tuesday
-    SalesSummary(weekday: date(2023, 5, 4), value: 40), // Last Wednesday
-    SalesSummary(weekday: date(2023, 5, 5), value: 78), // Last Thursday
-    SalesSummary(weekday: date(2023, 5, 6), value: 72), // Last Friday
+    SalesSummary(weekday: date(2023, 5, 2), value: 74),
+    SalesSummary(weekday: date(2023, 5, 3), value: 62),
+    SalesSummary(weekday: date(2023, 5, 4), value: 40),
+    SalesSummary(weekday: date(2023, 5, 5), value: 78),
+    SalesSummary(weekday: date(2023, 5, 6), value: 72),
 ]
 
 let sanFranciscoData: [SalesSummary] = [
-    SalesSummary(weekday: date(2023, 5, 2), value: 48), // Last Monday
-    SalesSummary(weekday: date(2023, 5, 3), value: 20), // Last Tuesday
-    SalesSummary(weekday: date(2023, 5, 4), value: 30), // Last Wednesday
-    SalesSummary(weekday: date(2023, 5, 5), value: 56), // Last Thursday
-    SalesSummary(weekday: date(2023, 5, 6), value: 70), // Last Friday
+    SalesSummary(weekday: date(2023, 5, 2), value: 48),
+    SalesSummary(weekday: date(2023, 5, 3), value: 20),
+    SalesSummary(weekday: date(2023, 5, 4), value: 30),
+    SalesSummary(weekday: date(2023, 5, 5), value: 56),
+    SalesSummary(weekday: date(2023, 5, 6), value: 70),
 ]
+
 struct DeviceDetailView: View {
     @State var city: City = .cupertino
     @ObservedObject var deviceViewModel: DeviceViewModel
@@ -89,83 +83,119 @@ struct DeviceDetailView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Picker("City", selection: $city.animation(.easeInOut)) {
-                Text("Cupertino").tag(City.cupertino)
-                Text("San Francisco").tag(City.sanFrancisco)
-            }
-            .pickerStyle(.segmented)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                Picker("City", selection: $city.animation(.easeInOut)) {
+                    Text(City.cupertino.rawValue).tag(City.cupertino)
+                    Text(City.sanFrancisco.rawValue).tag(City.sanFrancisco)
+                }
+                .pickerStyle(.segmented)
 
-            GroupBox {
-                VStack(alignment: .leading) {
-                    Text("Latest Data:")
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                    Text(latestValue, format: .number)
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .contentTransition(.numericText())
-                        .fontDesign(.rounded)
-                    Text("TODAY")
-                        .font(.caption)
-                        .foregroundColor(.gray)
+                GroupBox {
+                    VStack(alignment: .leading) {
+                        Text("Latest Data:")
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                        Text(latestValue, format: .number)
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .contentTransition(.numericText())
+                            .fontDesign(.rounded)
+                        Text("TODAY")
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+
+                    Chart(selectedCityData) { element in
+                        BarMark(
+                            x: .value("Time", element.weekday, unit: .day),
+                            y: .value("Value", element.value)
+                        )
+                        .foregroundStyle(.opacity(0.4))
+                        RuleMark(
+                            y: .value("Average", averageValue)
+                        )
+                        .lineStyle(StrokeStyle(lineWidth: 3))
+                        .annotation(position: .top, alignment: .leading) {
+                            Text("Average: \(averageValue, format: .number)")
+                                .font(.footnote)
+                                .fontDesign(.rounded)
+                                .contentTransition(.numericText())
+                                .foregroundStyle(.purple)
+                        }
+                    }
+                    .frame(height: 200)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
 
-                Chart(selectedCityData) { element in
-                    BarMark(
-                        x: .value("Time", element.weekday, unit: .day),
-                        y: .value("Value", element.value)
-                    )
-                    .foregroundStyle(.opacity(0.4))
-                    RuleMark(
-                        y: .value("Average", averageValue)
-                    )
-                    .lineStyle(StrokeStyle(lineWidth: 3))
-                    .annotation(position: .top, alignment: .leading) {
-                        Text("Average: \(averageValue, format: .number)")
-                            .font(.footnote)
-                            .fontDesign(.rounded)
+                Text("On Average the Air Quality of the farm is 20 Parts per Million (ppm) which is appropriate for crop growing and cultivating.")
+                    .font(.subheadline)
+
+#if os(macOS)
+                Form {
+                    Section(header: Text("Statistical Analysis")) {
+                        LabeledContent("Daily Average", value: "\(dailyAverage.formatted()) ppm")
                             .contentTransition(.numericText())
-                            .foregroundStyle(.purple)
+                        LabeledContent("Weekday Average", value: "\(weekdayAverage.formatted()) ppm")
+                            .contentTransition(.numericText())
+                        LabeledContent("Weekend Average", value: "\(weekendAverage.formatted()) ppm")
+                            .contentTransition(.numericText())
+                        LabeledContent("Highest Record", value: "\(highestRecord.formatted()) ppm")
+                            .contentTransition(.numericText())
+                    }
+                    Section(header: Text("Data Records")) {
+                        Table(selectedCityData) {
+                            TableColumn("Date") { element in
+                                Text(element.weekday, format: .dateTime.month().day().year())
+                            }
+                            TableColumn("Value") { element in
+                                Text("\(element.value) ppm")
+                            }
+                            TableColumn("Status") { _ in
+                                Text("NORMAL")
+                            }
+                        }
                     }
                 }
-                .frame(height: 200)
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
+                .formStyle(.grouped)
+#else
+                GroupBox {
+                    LabeledContent("Daily Average", value: "\(dailyAverage.formatted()) ppm")
+                        .contentTransition(.numericText())
+                        .fontWeight(.medium)
+                }
 
-            Text("On Average the Air Quality of the farm is 20 Parts per Million (ppm) which appropriate for crop growing and cultivating.")
-                .font(.subheadline)
+                GroupBox {
+                    LabeledContent("Weekday Average", value: "\(weekdayAverage.formatted()) ppm")
+                        .contentTransition(.numericText())
+                        .fontWeight(.medium)
+                }
 
-            GroupBox {
-                LabeledContent("Daily Average", value: "\(dailyAverage.formatted()) ppm")
-                    .contentTransition(.numericText())
-                    .fontWeight(.medium)
-            }
+                GroupBox {
+                    LabeledContent("Weekend Average", value: "\(weekendAverage.formatted()) ppm")
+                        .contentTransition(.numericText())
+                        .fontWeight(.medium)
+                }
 
-            GroupBox {
-                LabeledContent("Weekday Average", value: "\(weekdayAverage.formatted()) ppm")
-                    .contentTransition(.numericText())
-                    .fontWeight(.medium)
-            }
+                GroupBox {
+                    LabeledContent("Highest Record:", value: "\(highestRecord.formatted()) ppm")
+                        .contentTransition(.numericText())
+                        .fontWeight(.medium)
+                }
+                GroupBox {
+                    List(selectedCityData) { element in
+                        LabeledContent("Date", value: "\(element.weekday.formatted(date: .abbreviated, time: .omitted))")
+                        LabeledContent("Value", value: "\(element.value) ppm")
+                    }
+                }
+#endif
 
-            GroupBox {
-                LabeledContent("Weekend Average", value: "\(weekendAverage.formatted()) ppm")
-                    .contentTransition(.numericText())
-                    .fontWeight(.medium)
+                Spacer()
             }
-
-            GroupBox {
-                LabeledContent("Highest Record:", value: "\(highestRecord.formatted()) ppm")
-                    .contentTransition(.numericText())
-                    .fontWeight(.medium)
-            }
-            Spacer()
+            .padding()
+            .navigationTitle(deviceViewModel.device.name)
         }
-
-        .padding()
-        .navigationTitle(deviceViewModel.device.name)
-        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

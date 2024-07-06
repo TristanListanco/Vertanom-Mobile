@@ -3,16 +3,17 @@ import SwiftUI
 
 struct DashboardView: View {
     @State private var isProfileViewPresented = false
-    @Namespace() var namespace
+    @Namespace var namespace
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     let viewModel = DeveloperPreview.shared.dummyUserProfileViewModel()
     let deviceViewModels = DeveloperPreview.shared.dummyDeviceViewModels()
+
     var body: some View {
         NavigationStack {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading) {
                     WeatherCard()
-                    .padding([.top, .bottom], 16) // Padding of 20 points to horizontal, top, and bottom
+                        .padding([.top, .bottom], 16)
 
                     Text("Devices")
                         .font(.title2)
@@ -26,7 +27,7 @@ struct DashboardView: View {
 
                     LazyVGrid(columns: columns, spacing: 20) {
                         ForEach(deviceViewModels, id: \.device.id) { viewModel in
-                            DeviceCard(viewModel: viewModel)
+                            DeviceCard(viewModel: viewModel, namespace: namespace)
                                 .buttonStyle(PlainButtonStyle())
                         }
                     }
@@ -34,29 +35,52 @@ struct DashboardView: View {
                     Spacer()
                 }
                 .padding(.horizontal, 20)
-                .frame(maxWidth: .infinity) // Ensures the VStack stretches to fill the ScrollView's width
+                .frame(maxWidth: .infinity)
+            }
+            .navigationDestination(for: Device.self) { device in
+                DeviceDetailView(deviceViewModel: DeviceViewModel(device: device))
             }
             .navigationTitle("Dashboard")
             .toolbar {
+                #if os(iOS)
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         isProfileViewPresented = true
                     }) {
                         Image(systemName: "person.crop.circle")
                             .imageScale(.large)
-                            .foregroundStyle(Color.purple)
+                            .foregroundStyle(Color(.systemPurple))
                             .font(.system(size: 24))
                     }
                 }
+                #elseif os(macOS)
+                ToolbarItem(placement: .automatic) {
+                    Spacer()
+                }
+                ToolbarItem(placement: .automatic) {
+                    Button(action: {
+                        isProfileViewPresented = true
+                    }) {
+                        Label("Profile", systemImage: "person.crop.circle")
+                            .imageScale(.large)
+                            .foregroundStyle(Color(NSColor.systemPurple))
+                            .font(.system(size: 24))
+                    }
+                }
+                #endif
             }
             .sheet(isPresented: $isProfileViewPresented) {
                 NavigationView {
                     Profile(viewModel: viewModel)
                         .presentationSizing(.form)
-                        .navigationBarTitle("Profile", displayMode: .inline)
-                        .navigationBarItems(trailing: Button("Done") {
-                            isProfileViewPresented = false
-                        })
+                        .navigationTitle("Profile")
+                        .toolbar {
+                            ToolbarItem(placement: .confirmationAction) {
+                                Button("Done") {
+                                    isProfileViewPresented = false
+                                }
+                            }
+                        }
                 }
             }
         }

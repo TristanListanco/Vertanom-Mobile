@@ -1,16 +1,11 @@
-//
-//  DeviceCard.swift
-//  Vertanom
-//
-//  Created by Tristan Listanco on 7/1/24.
-//
-
 import SwiftUI
 
 struct DeviceCard: View {
     @ObservedObject var viewModel: DeviceViewModel
+    var namespace: Namespace.ID
+
     var body: some View {
-        NavigationLink(destination: DeviceDetailView(deviceViewModel: viewModel)) {
+        NavigationLink(value: viewModel.device) {
             HStack {
                 VStack(alignment: .leading, spacing: 8) {
                     Text(viewModel.device.name)
@@ -43,10 +38,17 @@ struct DeviceCard: View {
                 }
             }
             .padding()
+            .background(
+                RoundedRectangle(cornerRadius: 15)
+                    .fill(backgroundColor)
+            )
             .frame(maxWidth: .infinity)
             .frame(minHeight: 150) // Ensure a minimum height but allow it to grow
-            .background(Color(UIColor.secondarySystemBackground))
-            .clipShape(RoundedRectangle(cornerRadius: 15))
+            .matchedGeometryEffect(id: viewModel.device.id, in: namespace)
+            #if !os(macOS)
+            .navigationTransition(.zoom(sourceID: viewModel.device.id, in: namespace))
+            .matchedTransitionSource(id: viewModel.device.id, in: namespace)
+            #endif
         }
     }
 
@@ -67,6 +69,15 @@ struct DeviceCard: View {
             return .gray
         }
     }
+
+    // Computed property to determine the background color based on the platform
+    private var backgroundColor: Color {
+        #if os(iOS) || os(tvOS)
+        return Color(.secondarySystemBackground)
+        #elseif os(macOS)
+        return Color(NSColor.windowBackgroundColor)
+        #endif
+    }
 }
 
 #Preview {
@@ -79,6 +90,7 @@ struct DeviceCard: View {
     )
 
     let viewModel = DeviceViewModel(device: sampleDevice)
+    @Namespace var namespace
 
-    return DeviceCard(viewModel: viewModel)
+    return DeviceCard(viewModel: viewModel, namespace: namespace)
 }

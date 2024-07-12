@@ -9,12 +9,7 @@ import SwiftUI
 
 struct ArticleView: View {
     var body: some View {
-        NavigationStack {
-            VStack(alignment: .leading, spacing: 32) {
-                
-            }
-                .navigationTitle("Articles")
-        }
+        Text("Articles Content")
     }
 }
 

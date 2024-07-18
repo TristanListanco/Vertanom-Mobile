@@ -1,5 +1,6 @@
 import Charts
 import SwiftUI
+import TipKit
 
 struct SalesSummary: Identifiable, Equatable {
     let weekday: Date
@@ -82,9 +83,12 @@ struct DeviceDetailView: View {
         selectedCityData.map { $0.value }.max() ?? 0
     }
 
+    let monitordeviceTip = MonitorData()
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
+                TipView(monitordeviceTip)
                 Picker("City", selection: $city.animation(.easeInOut)) {
                     Text(City.cupertino.rawValue).tag(City.cupertino)
                     Text(City.sanFrancisco.rawValue).tag(City.sanFrancisco)
@@ -196,9 +200,62 @@ struct DeviceDetailView: View {
             .padding()
             .navigationTitle(deviceViewModel.device.name)
         }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Menu {
+                    Label("View Options", systemImage: "eye")
+                        .font(.headline)
+                    Divider()
+                    Button {
+                        // Action for Temperature
+                    } label: {
+                        Label("Temperature", systemImage: "thermometer")
+                    }
+                    Button {
+                        // Action for Humidity
+                    } label: {
+                        Label("Humidity", systemImage: "drop")
+                    }
+                    Button {
+                        // Action for pH
+                    } label: {
+                        Label("pH", systemImage: "leaf")
+                    }
+                    Button {
+                        // Action for Soil Nutrient
+                    } label: {
+                        Label("Soil Nutrient", systemImage: "leaf.arrow.circlepath")
+                    }
+                    Divider()
+                    Button(role: .destructive) {
+                        // Action for Reset Data
+                    } label: {
+                        Label("Reset Data", systemImage: "trash")
+                    }
+                } label: {
+                    Image(systemName: "ellipsis.circle")
+                        .imageScale(.medium)
+                        .font(.system(size: 24))
+                }
+            }
+        }
     }
 }
 
 #Preview {
-    DeviceDetailView(deviceViewModel: DeviceViewModel(device: Device(id: "1", name: "Example Device", location: "Sample Location", lastUpdated: "10:00 AM", status: "Running")))
+    let sampleDevice = Device(
+        id: "1",
+        name: "Example Device",
+        location: "Sample Location",
+        lastUpdated: "10:00 AM",
+        status: DeviceStatus(rawValue: DeviceStatus.online.rawValue) ?? .unknown,
+        temperature: 25.0,
+        pH: 7.0,
+        humidity: 60.0,
+        soilNutrient: 0.5
+    )
+
+    let viewModel = DeviceViewModel(device: sampleDevice)
+
+    DeviceDetailView(deviceViewModel: viewModel)
 }

@@ -28,16 +28,18 @@ struct WeatherInfoView: View {
                 Text(weather.locationName)
                     .font(.title2)
                     .fontWeight(.bold)
-
+                    .foregroundStyle(Color.white)
                 Text(Date(), style: .time)
                     .font(.subheadline)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(Color.white)
 
                 Spacer()
                 HStack(spacing: 2) {
                     Image(systemName: weather.getIconName())
+                        .foregroundStyle(Color.white)
                     Text(weather.condition)
                         .font(.headline)
+                        .foregroundStyle(Color.white)
                 }
             }
             Spacer()
@@ -45,12 +47,13 @@ struct WeatherInfoView: View {
                 Text(weather.temperature)
                     .font(.largeTitle)
                     .fontWeight(.bold)
+                    .foregroundStyle(Color.white)
 
                 Spacer()
 
                 Text(weather.highsLows)
                     .font(.subheadline)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(Color.white)
                     .alignmentGuide(.bottom) { _ in 0 }
             }
         }
@@ -84,7 +87,7 @@ struct ErrorView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 15))
         )
     }
-    
+
     private var platformColorBackground: Color {
         #if os(macOS)
         return Color(NSColor.windowBackgroundColor)

@@ -5,8 +5,8 @@
 //  Created by Tristan Listanco on 7/6/24.
 //
 
-import WidgetKit
 import SwiftUI
+import WidgetKit
 
 struct Provider: AppIntentTimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
@@ -16,7 +16,7 @@ struct Provider: AppIntentTimelineProvider {
     func snapshot(for configuration: ConfigurationAppIntent, in context: Context) async -> SimpleEntry {
         SimpleEntry(date: Date(), configuration: configuration)
     }
-    
+
     func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<SimpleEntry> {
         var entries: [SimpleEntry] = []
 
@@ -41,15 +41,48 @@ struct SimpleEntry: TimelineEntry {
     let configuration: ConfigurationAppIntent
 }
 
-struct Vertanom_WidgetKitEntryView : View {
+struct Vertanom_WidgetKitEntryView: View {
     var entry: Provider.Entry
 
     var body: some View {
-        Text("Time:")
-        Text(entry.date, style: .time)
+        ZStack {
+            LinearGradient(
+                gradient: Gradient(colors: [.purple.opacity(0.7), .purple]),
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
 
-        Text("Favorite Emoji:")
-        Text(entry.configuration.favoriteEmoji)
+            VStack(alignment: .leading, spacing: 8) {
+                HStack {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Last Opened Device")
+                            .font(.footnote)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                        Text("SunnyWoodFarm")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                    }
+                    Spacer()
+                    Image(systemName: "checkmark.circle.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 40, height: 40)
+                        .foregroundColor(.white)
+                        .symbolRenderingMode(.hierarchical)
+                }
+
+                Spacer()
+
+                Text("Iligan")
+                    .font(.body)
+                    .foregroundColor(.white)
+                    .padding(.bottom, 8)
+            }
+            .padding()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
@@ -64,14 +97,14 @@ struct Vertanom_WidgetKit: Widget {
     }
 }
 
-extension ConfigurationAppIntent {
-    fileprivate static var smiley: ConfigurationAppIntent {
+private extension ConfigurationAppIntent {
+    static var smiley: ConfigurationAppIntent {
         let intent = ConfigurationAppIntent()
         intent.favoriteEmoji = "😀"
         return intent
     }
-    
-    fileprivate static var starEyes: ConfigurationAppIntent {
+
+    static var starEyes: ConfigurationAppIntent {
         let intent = ConfigurationAppIntent()
         intent.favoriteEmoji = "🤩"
         return intent

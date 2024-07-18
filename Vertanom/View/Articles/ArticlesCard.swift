@@ -1,43 +1,61 @@
-//
-//  ArticlesCardView.swift
-//  Vertanom
-//
-//  Created by Tristan Listanco on 7/8/24.
-//
-
 import SwiftUI
 
 struct ArticlesCardView: View {
     let article: Article
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    var namespace: Namespace.ID
 
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 8) {
             Image(article.imageName)
                 .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(maxWidth: .infinity)
-                .frame(minHeight: 70)
-                .cornerRadius(8)
+                .aspectRatio(contentMode: .fill)
+                .frame(height: 150)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .clipped()
 
-            Text(article.title)
-                .font(.title2)
-                .fontWeight(.bold)
-                .padding(.top, 8)
+            VStack(alignment: .leading, spacing: 4) {
+                Text(article.title)
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                    .lineLimit(1)
+                    .foregroundColor(Color.primary)
 
-            Text(article.content)
-                .font(.caption)
-                .lineLimit(2)
-                .padding(.top, 2)
+                Text(article.content)
+                    .font(.subheadline)
+                    .lineLimit(1)
+                    .foregroundColor(Color.secondary)
+                    .truncationMode(.tail)
+            }
+            .padding([.horizontal, .bottom])
         }
-        .padding()
-        .background(Color(UIColor.secondarySystemBackground))
-        .cornerRadius(12)
-        .shadow(radius: 4)
+        .background(Rectangle()
+        )
+        .foregroundColor(backgroundColor)
+        .cornerRadius(15)
+        .frame(maxWidth: .infinity)
+        .frame(minHeight: 170) // Ensure a minimum height but allow it to grow
     }
+}
+
+// Computed property to determine the background color based on the platform
+private var backgroundColor: Color {
+    #if os(iOS) || os(tvOS)
+    return Color(.secondarySystemBackground)
+    #elseif os(macOS)
+    return Color(NSColor.windowBackgroundColor)
+    #endif
 }
 
 struct ArticlesCardView_Previews: PreviewProvider {
     static var previews: some View {
-        ArticlesCardView(article: Article(imageName: "article-1", title: "Sample Article", content: "This is a brief overview of the content of the sample article."))
+        let sampleArticle = Article(
+            id: UUID(),
+            imageName: "article-1",
+            title: "The Future of IoT in Agriculture",
+            content: "The integration of IoT in agriculture has"
+        )
+        @Namespace var namespace
+        ArticlesCardView(article: sampleArticle, namespace: namespace)
     }
 }

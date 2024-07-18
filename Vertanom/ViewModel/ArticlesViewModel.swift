@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+import Foundation
+
+class ArticleViewModel: ObservableObject {
+    @Published var articles: [Article]
+
+    init(articles: [Article]) {
+        self.articles = articles
+    }
+}

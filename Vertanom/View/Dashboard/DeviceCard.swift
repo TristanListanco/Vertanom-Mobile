@@ -83,16 +83,22 @@ struct DeviceCard: View {
 
 struct DeviceCard_Previews: PreviewProvider {
     static var previews: some View {
+        let sampleSensorData = [
+            SensorValue(date: Date(), value: 50),
+            SensorValue(date: Calendar.current.date(byAdding: .day, value: -1, to: Date())!, value: 55),
+            SensorValue(date: Calendar.current.date(byAdding: .day, value: -2, to: Date())!, value: 60)
+        ]
+
         let sampleDevice = Device(
             id: "1",
             name: "Example Device",
             location: "Sample Location",
             lastUpdated: "10:00 AM",
-            status: DeviceStatus(rawValue: DeviceStatus.online.rawValue) ?? .idle,
-            temperature: 25.0,
-            pH: 7.0,
-            humidity: 60.0,
-            soilNutrient: 0.5
+            status: .online,
+            temperatureData: sampleSensorData,
+            pHData: sampleSensorData,
+            humidityData: sampleSensorData,
+            soilNutrientData: sampleSensorData
         )
 
         let viewModel = DeviceViewModel(device: sampleDevice)

@@ -34,7 +34,7 @@
 		635BD5882C3192AC005CFF31 /* ReportIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635BD5872C3192AC005CFF31 /* ReportIssue.swift */; };
 		635BD58B2C3198B3005CFF31 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635BD58A2C3198B3005CFF31 /* Activity.swift */; };
 		635BD58D2C319C72005CFF31 /* UserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635BD58C2C319C72005CFF31 /* UserProfileModel.swift */; };
-		635BD58F2C319E70005CFF31 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635BD58E2C319E70005CFF31 /* UserViewModel.swift */; };
+		635BD58F2C319E70005CFF31 /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635BD58E2C319E70005CFF31 /* UserProfileViewModel.swift */; };
 		635BD5912C31A2E1005CFF31 /* DeveloperPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635BD5902C31A2E1005CFF31 /* DeveloperPreview.swift */; };
 		635BD5932C32656E005CFF31 /* WeatherCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635BD5922C32656E005CFF31 /* WeatherCard.swift */; };
 		639C855D2C38E024000014B3 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639C855C2C38E024000014B3 /* WidgetKit.framework */; };
@@ -179,7 +179,7 @@
 		635BD5872C3192AC005CFF31 /* ReportIssue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportIssue.swift; sourceTree = "<group>"; };
 		635BD58A2C3198B3005CFF31 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		635BD58C2C319C72005CFF31 /* UserProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileModel.swift; sourceTree = "<group>"; };
-		635BD58E2C319E70005CFF31 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		635BD58E2C319E70005CFF31 /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
 		635BD5902C31A2E1005CFF31 /* DeveloperPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperPreview.swift; sourceTree = "<group>"; };
 		635BD5922C32656E005CFF31 /* WeatherCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCard.swift; sourceTree = "<group>"; };
 		639C855A2C38E024000014B3 /* Vertanom-WidgetKitExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Vertanom-WidgetKitExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -389,7 +389,7 @@
 			isa = PBXGroup;
 			children = (
 				635BD5822C314962005CFF31 /* DevelopersViewModel.swift */,
-				635BD58E2C319E70005CFF31 /* UserViewModel.swift */,
+				635BD58E2C319E70005CFF31 /* UserProfileViewModel.swift */,
 				63092A962C338D40002F9C92 /* DeviceViewModel.swift */,
 				63C2791F2C36DA3D003362E2 /* WeatherViewModel.swift */,
 				634E65AB2C3C3605006FBBFA /* ArticlesViewModel.swift */,
@@ -929,7 +929,7 @@
 				635BD5932C32656E005CFF31 /* WeatherCard.swift in Sources */,
 				635BD5882C3192AC005CFF31 /* ReportIssue.swift in Sources */,
 				634E65A32C3AC128006FBBFA /* AddDeviceView.swift in Sources */,
-				635BD58F2C319E70005CFF31 /* UserViewModel.swift in Sources */,
+				635BD58F2C319E70005CFF31 /* UserProfileViewModel.swift in Sources */,
 				635BD5852C314C74005CFF31 /* DeveloperDetailView.swift in Sources */,
 				63C279222C36DA4A003362E2 /* WeatherModel.swift in Sources */,
 				63C279262C36DC4E003362E2 /* WeatherService.swift in Sources */,

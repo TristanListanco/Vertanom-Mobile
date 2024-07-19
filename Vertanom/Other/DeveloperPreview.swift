@@ -32,29 +32,29 @@ class DeveloperPreview {
     }
 
     // Generate dummy device data with sensor values
-    func dummyDevice(id: String, name: String, location: String, lastUpdated: String, status: DeviceStatus, temperature: Double, pH: Double, humidity: Double, soilNutrient: Double) -> Device {
+    func dummyDevice(id: String, name: String, location: String, lastUpdated: String, status: DeviceStatus) -> Device {
         return Device(
             id: id,
             name: name,
             location: location,
             lastUpdated: lastUpdated,
             status: status,
-            temperature: temperature,
-            pH: pH,
-            humidity: humidity,
-            soilNutrient: soilNutrient
+            temperatureData: generateSensorValues(),
+            pHData: generateSensorValues(),
+            humidityData: generateSensorValues(),
+            soilNutrientData: generateSensorValues()
         )
     }
 
     // Generate an array of dummy devices with sensor values
     func dummyDevices() -> [Device] {
         return [
-            dummyDevice(id: UUID().uuidString, name: "Sunnybrook Farm", location: "San Francisco", lastUpdated: "10:00 AM", status: .online, temperature: 21.5, pH: 7.1, humidity: 58.0, soilNutrient: 3.8),
-            dummyDevice(id: UUID().uuidString, name: "Greenfield Farm", location: "New York", lastUpdated: "11:30 AM", status: .idle, temperature: 19.2, pH: 6.9, humidity: 65.0, soilNutrient: 3.2),
-            dummyDevice(id: UUID().uuidString, name: "Maplewood Farm", location: "Los Angeles", lastUpdated: "12:45 PM", status: .online, temperature: 22.0, pH: 7.0, humidity: 60.0, soilNutrient: 3.5),
-            dummyDevice(id: UUID().uuidString, name: "Willow Creek Farm", location: "Chicago", lastUpdated: "09:15 AM", status: .offline, temperature: 20.0, pH: 6.8, humidity: 55.0, soilNutrient: 3.0),
-            dummyDevice(id: UUID().uuidString, name: "Oakridge Farm", location: "Seattle", lastUpdated: "08:00 AM", status: .online, temperature: 18.5, pH: 7.2, humidity: 62.0, soilNutrient: 3.9),
-            dummyDevice(id: UUID().uuidString, name: "Pine Hill Farm", location: "Austin", lastUpdated: "07:45 AM", status: .offline, temperature: 17.8, pH: 7.3, humidity: 59.0, soilNutrient: 3.4)
+            dummyDevice(id: UUID().uuidString, name: "Sunnybrook Farm", location: "San Francisco", lastUpdated: "10:00 AM", status: .online),
+            dummyDevice(id: UUID().uuidString, name: "Greenfield Farm", location: "New York", lastUpdated: "11:30 AM", status: .idle),
+            dummyDevice(id: UUID().uuidString, name: "Maplewood Farm", location: "Los Angeles", lastUpdated: "12:45 PM", status: .online),
+            dummyDevice(id: UUID().uuidString, name: "Willow Creek Farm", location: "Chicago", lastUpdated: "09:15 AM", status: .offline),
+            dummyDevice(id: UUID().uuidString, name: "Oakridge Farm", location: "Seattle", lastUpdated: "08:00 AM", status: .online),
+            dummyDevice(id: UUID().uuidString, name: "Pine Hill Farm", location: "Austin", lastUpdated: "07:45 AM", status: .offline)
         ]
     }
 
@@ -81,5 +81,23 @@ class DeveloperPreview {
     // Example method to create an array of view models with dummy article data
     func dummyArticleViewModels() -> [ArticleViewModel] {
         return dummyArticles().map { ArticleViewModel(articles: [$0]) }
+    }
+
+    // Helper method to create a date object
+    private func date(_ year: Int, _ month: Int, _ day: Int) -> Date {
+        var components = DateComponents()
+        components.year = year
+        components.month = month
+        components.day = day
+        return Calendar.current.date(from: components) ?? Date()
+    }
+
+    // Helper method to generate random sensor values
+    private func generateSensorValues() -> [SensorValue] {
+        let startDate = date(2023, 1, 1)
+        return (0..<10).map { i in
+            let day = Calendar.current.date(byAdding: .day, value: i, to: startDate) ?? startDate
+            return SensorValue(date: day, value: Int.random(in: 0...100))
+        }
     }
 }

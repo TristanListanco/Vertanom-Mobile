@@ -5,7 +5,6 @@
 //  Created by Tristan Listanco on 7/2/24.
 //
 
-import Combine
 import Foundation
 
 class DeviceViewModel: ObservableObject {
@@ -33,20 +32,37 @@ class DeviceViewModel: ObservableObject {
         device.status = DeviceStatus(rawValue: newStatus) ?? .unknown
     }
 
-    // Update sensor values
-    func updateTemperature(_ newTemperature: Double) {
-        device.temperature = newTemperature
+    // Update sensor data
+    func updateTemperatureData(_ newData: [SensorValue]) {
+        device.temperatureData = newData
     }
 
-    func updatePH(_ newPH: Double) {
-        device.pH = newPH
+    func updatePHData(_ newData: [SensorValue]) {
+        device.pHData = newData
     }
 
-    func updateHumidity(_ newHumidity: Double) {
-        device.humidity = newHumidity
+    func updateHumidityData(_ newData: [SensorValue]) {
+        device.humidityData = newData
     }
 
-    func updateSoilNutrient(_ newSoilNutrient: Double) {
-        device.soilNutrient = newSoilNutrient
+    func updateSoilNutrientData(_ newData: [SensorValue]) {
+        device.soilNutrientData = newData
+    }
+
+    // Add a new sensor value
+    func addTemperatureData(_ newValue: SensorValue) {
+        device.temperatureData.append(newValue)
+    }
+
+    func addPHData(_ newValue: SensorValue) {
+        device.pHData.append(newValue)
+    }
+
+    func addHumidityData(_ newValue: SensorValue) {
+        device.humidityData.append(newValue)
+    }
+
+    func addSoilNutrientData(_ newValue: SensorValue) {
+        device.soilNutrientData.append(newValue)
     }
 }

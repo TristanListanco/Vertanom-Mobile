@@ -7,13 +7,17 @@
 
 import Foundation
 
-import Foundation
-
 enum DeviceStatus: String, Codable {
     case online = "ONLINE"
     case offline = "OFFLINE"
     case idle = "IDLE"
     case unknown // Default case
+}
+
+struct SensorValue: Identifiable, Codable, Hashable {
+    let date: Date
+    var value: Int
+    var id: Date { date }
 }
 
 struct Device: Identifiable, Codable, Hashable {
@@ -22,8 +26,8 @@ struct Device: Identifiable, Codable, Hashable {
     var location: String
     var lastUpdated: String
     var status: DeviceStatus
-    var temperature: Double // Temperature sensor value
-    var pH: Double // pH sensor value
-    var humidity: Double // Humidity sensor value
-    var soilNutrient: Double // Soil nutrient sensor value
+    var temperatureData: [SensorValue]
+    var pHData: [SensorValue]
+    var humidityData: [SensorValue]
+    var soilNutrientData: [SensorValue]
 }

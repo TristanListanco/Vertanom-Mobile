@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DeviceViewModel: ObservableObject {
+class DeviceViewModel: ObservableObject, Hashable, Equatable {
     @Published var device: Device
 
     init(device: Device) {
@@ -64,5 +64,15 @@ class DeviceViewModel: ObservableObject {
 
     func addSoilNutrientData(_ newValue: SensorValue) {
         device.soilNutrientData.append(newValue)
+    }
+
+    // Equatable conformance
+    static func == (lhs: DeviceViewModel, rhs: DeviceViewModel) -> Bool {
+        return lhs.device.id == rhs.device.id
+    }
+
+    // Hashable conformance
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(device.id)
     }
 }

@@ -35,37 +35,28 @@ struct DeviceDetailView: View {
     @State private var selectedDataType: DataType = .temperature
     @State private var selectedDataRange: DataRange = .daily
     @State private var selectedDeviceData: [SensorValue] = []
-    let avg = 65.2
-
     var averageValue: Double {
-        let total = selectedDeviceData.reduce(0) { $0 + $1.value }
-        return selectedDeviceData.isEmpty ? 0 : Double(total) / Double(selectedDeviceData.count)
+        Computations.averageValue(for: selectedDeviceData)
     }
 
-    var latestValue: Int {
-        selectedDeviceData.last?.value ?? 0
+    var latestValue: Double {
+        Computations.latestValue(for: selectedDeviceData)
     }
 
     var dailyAverage: Double {
-        let days = Set(selectedDeviceData.map { Calendar.current.component(.weekday, from: $0.date) })
-        let total = selectedDeviceData.reduce(0) { $0 + $1.value }
-        return days.isEmpty ? 0 : Double(total) / Double(days.count)
+        Computations.dailyAverage(for: selectedDeviceData)
     }
 
     var weekdayAverage: Double {
-        let weekdays = selectedDeviceData.filter { !Calendar.current.isDateInWeekend($0.date) }
-        let total = weekdays.reduce(0) { $0 + $1.value }
-        return weekdays.isEmpty ? 0 : Double(total) / Double(weekdays.count)
+        Computations.weekdayAverage(for: selectedDeviceData)
     }
 
     var weekendAverage: Double {
-        let weekends = selectedDeviceData.filter { Calendar.current.isDateInWeekend($0.date) }
-        let total = weekends.reduce(0) { $0 + $1.value }
-        return weekends.isEmpty ? 0 : Double(total) / Double(weekends.count)
+        Computations.weekendAverage(for: selectedDeviceData)
     }
 
-    var highestRecord: Int {
-        selectedDeviceData.map { $0.value }.max() ?? 0
+    var highestRecord: Double {
+        Computations.highestRecord(for: selectedDeviceData)
     }
 
     let monitordeviceTip = MonitorData()
@@ -143,7 +134,7 @@ struct DeviceDetailView: View {
                             .contentTransition(.numericText())
                             .animation(.default, value: latestValue)
                     }
-            
+
                     Section(header: Text("Data Records")) {
                         Table(selectedDeviceData) {
                             TableColumn("Date") { element in
@@ -220,6 +211,9 @@ struct DeviceDetailView: View {
 //        .onChange(of: selectedDataRange) { _ in
 //            filterDataByRange()
 //        }
+        .onChange(of: selectedDataType) { _ in
+            loadData()
+        }
         .toolbar {
             ToolbarItem {
                 Menu {

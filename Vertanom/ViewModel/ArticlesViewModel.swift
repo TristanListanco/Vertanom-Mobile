@@ -7,7 +7,6 @@
 
 import Foundation
 
-import Foundation
 
 class ArticleViewModel: ObservableObject {
     @Published var articles: [Article]

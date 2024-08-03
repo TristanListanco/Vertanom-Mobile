@@ -16,7 +16,7 @@ enum DeviceStatus: String, Codable {
 
 struct SensorValue: Identifiable, Codable, Hashable {
     let date: Date
-    var value: Int
+    var value: Double
     var id: Date { date }
 }
 

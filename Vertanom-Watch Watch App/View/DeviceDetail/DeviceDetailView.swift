@@ -6,19 +6,8 @@
 //
 
 import Charts
+import SwiftData
 import SwiftUI
-
-struct SalesSummary: Identifiable, Equatable {
-    let weekday: Date
-    var value: Int
-
-    var id: Date { weekday }
-}
-
-enum City {
-    case cupertino
-    case sanFrancisco
-}
 
 func date(_ year: Int, _ month: Int, _ day: Int) -> Date {
     var components = DateComponents()
@@ -28,109 +17,152 @@ func date(_ year: Int, _ month: Int, _ day: Int) -> Date {
     return Calendar.current.date(from: components) ?? Date()
 }
 
-let cupertinoData: [SalesSummary] = [
-    SalesSummary(weekday: date(2023, 5, 2), value: 74), // Last Monday
-    SalesSummary(weekday: date(2023, 5, 3), value: 62), // Last Tuesday
-    SalesSummary(weekday: date(2023, 5, 4), value: 40), // Last Wednesday
-    SalesSummary(weekday: date(2023, 5, 5), value: 78), // Last Thursday
-    SalesSummary(weekday: date(2023, 5, 6), value: 72), // Last Friday
-]
+enum DataType: String, CaseIterable {
+    case temperature = "Temperature"
+    case humidity = "Humidity"
+    case pH
+    case soilNutrient = "Soil Nutrient"
+}
 
-let sanFranciscoData: [SalesSummary] = [
-    SalesSummary(weekday: date(2023, 5, 2), value: 48), // Last Monday
-    SalesSummary(weekday: date(2023, 5, 3), value: 20), // Last Tuesday
-    SalesSummary(weekday: date(2023, 5, 4), value: 30), // Last Wednesday
-    SalesSummary(weekday: date(2023, 5, 5), value: 56), // Last Thursday
-    SalesSummary(weekday: date(2023, 5, 6), value: 70), // Last Friday
-]
+enum DataRange: String, CaseIterable {
+    case daily = "Daily"
+    case weekly = "Weekly"
+    case monthly = "Monthly"
+}
+
 struct DeviceDetailView: View {
-    @State var city: City = .cupertino
     @ObservedObject var deviceViewModel: DeviceViewModel
-    let avg = 65.2
-    
-    var selectedCityData: [SalesSummary] {
-        switch city {
-        case .cupertino:
-            return cupertinoData
-        case .sanFrancisco:
-            return sanFranciscoData
-        }
-    }
-    
+    @State private var selectedDataType: DataType = .temperature
+    @State private var selectedDataRange: DataRange = .daily
+    @State private var selectedDeviceData: [SensorValue] = []
+    @State private var showModal = false
+
     var averageValue: Double {
-        let total = selectedCityData.reduce(0) { $0 + $1.value }
-        return selectedCityData.isEmpty ? 0 : Double(total) / Double(selectedCityData.count)
+        Computations.averageValue(for: selectedDeviceData)
     }
-    
-    var latestValue: Int {
-        selectedCityData.last?.value ?? 0
+
+    var latestValue: Double {
+        Computations.latestValue(for: selectedDeviceData)
     }
-    
+
     var dailyAverage: Double {
-        let days = Set(selectedCityData.map { Calendar.current.component(.weekday, from: $0.weekday) })
-        let total = selectedCityData.reduce(0) { $0 + $1.value }
-        return days.isEmpty ? 0 : Double(total) / Double(days.count)
+        Computations.dailyAverage(for: selectedDeviceData)
     }
-    
+
     var weekdayAverage: Double {
-        let weekdays = selectedCityData.filter { !Calendar.current.isDateInWeekend($0.weekday) }
-        let total = weekdays.reduce(0) { $0 + $1.value }
-        return weekdays.isEmpty ? 0 : Double(total) / Double(weekdays.count)
+        Computations.weekdayAverage(for: selectedDeviceData)
     }
-    
+
     var weekendAverage: Double {
-        let weekends = selectedCityData.filter { Calendar.current.isDateInWeekend($0.weekday) }
-        let total = weekends.reduce(0) { $0 + $1.value }
-        return weekends.isEmpty ? 0 : Double(total) / Double(weekends.count)
+        Computations.weekendAverage(for: selectedDeviceData)
     }
-    
-    var highestRecord: Int {
-        selectedCityData.map { $0.value }.max() ?? 0
+
+    var highestRecord: Double {
+        Computations.highestRecord(for: selectedDeviceData)
     }
-    
+
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 8) {
-                Picker("City", selection: $city.animation(.easeInOut)) {
-                    Text("Cupertino").tag(City.cupertino)
-                    Text("San Francisco").tag(City.sanFrancisco)
-                }
-                .pickerStyle(WheelPickerStyle())
-                .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.bottom, 8)
-                
-                Chart(selectedCityData) { element in
+        TabView {
+            VStack(alignment: .leading, spacing: 4) {
+                Chart(selectedDeviceData) { element in
                     BarMark(
-                        x: .value("Time", element.weekday, unit: .day),
+                        x: .value("Time", element.date, unit: .day),
                         y: .value("Value", element.value)
                     )
-                    .foregroundStyle(.opacity(0.4))
+                    .foregroundStyle(.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                    .opacity(0.6)
                 }
-                .frame(height: 100)
-                .padding(.bottom, 8)
-                
+                .chartXAxis {
+                    AxisMarks(stroke: StrokeStyle(lineWidth: 0)) // Hides X axis
+                }
+                .chartYAxis {
+                    AxisMarks(stroke: StrokeStyle(lineWidth: 0))
+                }
+
+                .animation(.default, value: selectedDeviceData)
+                Spacer()
                 VStack(alignment: .leading) {
-                    Text("Latest Value:")
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                    Text(latestValue, format: .number)
+                    HStack {
+                        Image(systemName: selectedDataType.iconName)
+                            .opacity(0.7)
+                        Text(selectedDataType.rawValue)
+                            .font(.footnote)
+                            .fontWeight(.bold)
+                            .opacity(0.7)
+                    }
+                    Text(deviceViewModel.device.name)
+                        .font(.headline)
+                        .fontWeight(.medium)
+                        .contentTransition(.numericText())
+                        .animation(.default, value: latestValue)
+                    Text("\(latestValue, specifier: "%.2f")")
                         .font(.title3)
                         .fontWeight(.bold)
                         .contentTransition(.numericText())
+                        .animation(.default, value: latestValue)
                         .fontDesign(.rounded)
                 }
-                .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.bottom, 8)
-                
-                Spacer()
             }
-            .padding()
-            .navigationTitle(deviceViewModel.device.name)
-            .navigationBarTitleDisplayMode(.inline)
+            .padding(.horizontal)
+
+            DeviceStatisticsView(dailyAverage: dailyAverage,
+                                 weekdayAverage: weekdayAverage,
+                                 weekendAverage: weekendAverage,
+                                 highestRecord: highestRecord)
+
+            DeviceSystemStatusControls()
+        }
+        .tabViewStyle(.verticalPage)
+        .onAppear {
+            loadData()
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    showModal = true
+                } label: {
+                    Label("View", systemImage: "line.3.horizontal.decrease.circle")
+                }
+                .sheet(isPresented: $showModal) {
+                    DeviceViewOptionsModal(selectedDataType: $selectedDataType, loadData: loadData)
+                }
+            }
+        }
+        .foregroundStyle(.white)
+    }
+
+    func loadData() {
+        switch selectedDataType {
+        case .temperature:
+            selectedDeviceData = deviceViewModel.device.temperatureData
+        case .humidity:
+            selectedDeviceData = deviceViewModel.device.humidityData
+        case .pH:
+            selectedDeviceData = deviceViewModel.device.pHData
+        case .soilNutrient:
+            selectedDeviceData = deviceViewModel.device.soilNutrientData
         }
     }
 }
 
 #Preview {
-    DeviceDetailView(deviceViewModel: DeviceViewModel(device: Device(id: "1", name: "Example Device", location: "Sample Location", lastUpdated: "10:00 AM", status: "Running")))
+    let sampleDevice = Device(
+        id: "1",
+        name: "Example Device",
+        location: "Sample Location",
+        lastUpdated: "10:00 AM",
+        status: .online,
+        temperatureData: [
+            SensorValue(date: date(2023, 5, 2), value: 74),
+            SensorValue(date: date(2023, 5, 3), value: 62),
+            SensorValue(date: date(2023, 5, 4), value: 40),
+            SensorValue(date: date(2023, 5, 5), value: 78),
+            SensorValue(date: date(2023, 5, 6), value: 72)
+        ],
+        pHData: [],
+        humidityData: [],
+        soilNutrientData: []
+    )
+    DeviceDetailView(deviceViewModel: DeviceViewModel(device: sampleDevice))
 }

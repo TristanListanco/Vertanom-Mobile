@@ -1,21 +1,26 @@
-import Charts
 import SwiftUI
 
 struct DashboardView: View {
-    @State private var isProfileViewPresented = false
-    @Namespace() var namespace
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
-    let viewModel = DeveloperPreview.shared.dummyUserProfileViewModel()
+    @State private var selectedDevice: DeviceViewModel?
     let deviceViewModels = DeveloperPreview.shared.dummyDeviceViewModels()
+
     var body: some View {
-        NavigationStack {
-            List(deviceViewModels, id: \.device.id) { viewModel in
-                DeviceCard(viewModel: viewModel)
-                    // Remove default padding
-                    .frame(maxWidth: .infinity) // Make the DeviceCard take full width
+        NavigationSplitView {
+            List(deviceViewModels, id: \.device.id, selection: $selectedDevice) { viewModel in
+                NavigationLink(value: viewModel) {
+                    DeviceCard(viewModel: viewModel)
+                        .frame(maxWidth: .infinity)
+                }
             }
-            .listStyle(PlainListStyle()) // Remove default list styling
-            .navigationTitle("Dashboard")
+            .listStyle(.carousel)
+            .padding(.horizontal)
+            .navigationTitle("Devices")
+        } detail: {
+            if let selectedDevice = selectedDevice {
+                DeviceDetailView(deviceViewModel: selectedDevice)
+            } else {
+                Text("Select a device")
+            }
         }
     }
 }

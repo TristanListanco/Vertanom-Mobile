@@ -6,13 +6,53 @@
 //
 
 import SwiftUI
+import TipKit
 
-struct AddDevice: View {
+struct AddDeviceView: View {
+    @Binding var isPresented: Bool
+    @Binding var device: DeviceViewModel?
+    let deviceInstructions = DeviceInstructions()
+    @State private var deviceName: String = ""
+    @State private var deviceLocation: String = ""
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            TipView(deviceInstructions)
+            Form {
+                Section {
+                    TextField("Device Name", text: $deviceName)
+                    TextField("Location", text: $deviceLocation)
+                }
+            }
+        }
+        .padding()
+        .navigationTitle(device == nil ? "Add Device" : "Edit Device")
+        .toolbar {
+            ToolbarItem(placement: .confirmationAction) {
+                Button("Save") {
+                    // Save action
+                    if let device = device {
+                        // Update existing device
+                        device.device.name = deviceName
+                        device.device.location = deviceLocation
+                    } else {
+                        // Add new device
+                        // Add logic to save new device
+                    }
+                    isPresented = false
+                }
+            }
+            ToolbarItem(placement: .cancellationAction) {
+                Button("Cancel") {
+                    isPresented = false
+                }
+            }
+        }
+        .onAppear {
+            if let device = device {
+                deviceName = device.device.name
+                deviceLocation = device.device.location
+            }
+        }
     }
-}
-
-#Preview {
-    AddDevice()
 }

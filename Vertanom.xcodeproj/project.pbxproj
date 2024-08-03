@@ -10,10 +10,13 @@
 		63092A902C327BBF002F9C92 /* DeviceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63092A8F2C327BBF002F9C92 /* DeviceCard.swift */; };
 		63092A972C338D40002F9C92 /* DeviceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63092A962C338D40002F9C92 /* DeviceViewModel.swift */; };
 		630CC95F2C33C38100C57D0C /* DeviceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630CC95E2C33C38100C57D0C /* DeviceDetailView.swift */; };
+		63420B032C549DFB00F5A5EC /* ArticlesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634E65A92C3C35B7006FBBFA /* ArticlesModel.swift */; };
+		63420B042C549DFB00F5A5EC /* Developers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635BD5802C31493E005CFF31 /* Developers.swift */; };
+		63420B052C549DFB00F5A5EC /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AD45A2C4946B8009EC7CC /* Device.swift */; };
+		63420B062C549DFB00F5A5EC /* UserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635BD58C2C319C72005CFF31 /* UserProfileModel.swift */; };
 		634E65A32C3AC128006FBBFA /* AddDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634E65A22C3AC128006FBBFA /* AddDeviceView.swift */; };
 		634E65A82C3B5235006FBBFA /* Tip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634E65A72C3B5235006FBBFA /* Tip.swift */; };
 		634E65AA2C3C35B7006FBBFA /* ArticlesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634E65A92C3C35B7006FBBFA /* ArticlesModel.swift */; };
-		634E65AC2C3C3605006FBBFA /* ArticlesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634E65AB2C3C3605006FBBFA /* ArticlesViewModel.swift */; };
 		634E65AF2C3C3A94006FBBFA /* ArticlesCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634E65AE2C3C3A94006FBBFA /* ArticlesCard.swift */; };
 		635AD45B2C4946B8009EC7CC /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AD45A2C4946B8009EC7CC /* Device.swift */; };
 		635BD53D2C3052B1005CFF31 /* VertanomApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635BD53C2C3052B1005CFF31 /* VertanomApp.swift */; };
@@ -35,8 +38,10 @@
 		635BD58B2C3198B3005CFF31 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635BD58A2C3198B3005CFF31 /* Activity.swift */; };
 		635BD58D2C319C72005CFF31 /* UserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635BD58C2C319C72005CFF31 /* UserProfileModel.swift */; };
 		635BD58F2C319E70005CFF31 /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635BD58E2C319E70005CFF31 /* UserProfileViewModel.swift */; };
-		635BD5912C31A2E1005CFF31 /* DeveloperPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635BD5902C31A2E1005CFF31 /* DeveloperPreview.swift */; };
-		635BD5932C32656E005CFF31 /* WeatherCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635BD5922C32656E005CFF31 /* WeatherCard.swift */; };
+		6396A4422C52A61E006E1694 /* ArticlesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6396A43D2C52A61E006E1694 /* ArticlesViewModel.swift */; };
+		6396A4462C53376C006E1694 /* DeviceSystemControlStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6396A4452C53376C006E1694 /* DeviceSystemControlStatus.swift */; };
+		6396A4482C53377F006E1694 /* DeviceStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6396A4472C53377F006E1694 /* DeviceStatisticsView.swift */; };
+		6396A44A2C5368A3006E1694 /* DeviceViewOptionModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6396A4492C5368A3006E1694 /* DeviceViewOptionModal.swift */; };
 		639C855D2C38E024000014B3 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639C855C2C38E024000014B3 /* WidgetKit.framework */; };
 		639C855F2C38E024000014B3 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639C855E2C38E024000014B3 /* SwiftUI.framework */; };
 		639C85622C38E024000014B3 /* Vertanom_WidgetKitBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639C85612C38E024000014B3 /* Vertanom_WidgetKitBundle.swift */; };
@@ -44,33 +49,17 @@
 		639C85662C38E024000014B3 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639C85652C38E024000014B3 /* AppIntent.swift */; };
 		639C85682C38E026000014B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 639C85672C38E026000014B3 /* Assets.xcassets */; };
 		639C856E2C38E026000014B3 /* Vertanom-WidgetKitExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 639C855A2C38E024000014B3 /* Vertanom-WidgetKitExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		63C279042C359223003362E2 /* ReportIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C278E92C359223003362E2 /* ReportIssue.swift */; };
-		63C279052C359223003362E2 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C278EE2C359223003362E2 /* Profile.swift */; };
-		63C279062C359223003362E2 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C278E72C359223003362E2 /* Activity.swift */; };
-		63C279072C359223003362E2 /* Developers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C279002C359223003362E2 /* Developers.swift */; };
-		63C279082C359223003362E2 /* DeviceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C278FD2C359223003362E2 /* DeviceViewModel.swift */; };
 		63C279092C359223003362E2 /* DeviceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C278E32C359223003362E2 /* DeviceDetailView.swift */; };
-		63C2790A2C359223003362E2 /* DeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C279022C359223003362E2 /* DeviceModel.swift */; };
-		63C2790B2C359223003362E2 /* About.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C278EB2C359223003362E2 /* About.swift */; };
-		63C2790C2C359223003362E2 /* AddSensorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C278FA2C359223003362E2 /* AddSensorViewModel.swift */; };
 		63C2790D2C359223003362E2 /* DeviceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C278F42C359223003362E2 /* DeviceCard.swift */; };
-		63C2790E2C359223003362E2 /* UserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C279012C359223003362E2 /* UserProfileModel.swift */; };
 		63C2790F2C359223003362E2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C278F62C359223003362E2 /* ContentView.swift */; };
-		63C279102C359223003362E2 /* AddDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C278E52C359223003362E2 /* AddDeviceView.swift */; };
-		63C279112C359223003362E2 /* DevelopersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C278FB2C359223003362E2 /* DevelopersViewModel.swift */; };
-		63C279122C359223003362E2 /* WeatherCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C278F32C359223003362E2 /* WeatherCard.swift */; };
-		63C279132C359223003362E2 /* AddSensorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C278F82C359223003362E2 /* AddSensorData.swift */; };
-		63C279142C359223003362E2 /* AddSensorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C278FF2C359223003362E2 /* AddSensorModel.swift */; };
-		63C279152C359223003362E2 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C278FC2C359223003362E2 /* UserViewModel.swift */; };
-		63C279162C359223003362E2 /* DeveloperDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C278EC2C359223003362E2 /* DeveloperDetailView.swift */; };
-		63C279172C359223003362E2 /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C278F02C359223003362E2 /* ArticleView.swift */; };
 		63C279182C359223003362E2 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C278F22C359223003362E2 /* DashboardView.swift */; };
 		63C279192C359223003362E2 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C278F72C359223003362E2 /* MainTabView.swift */; };
-		63C2791B2C35922D003362E2 /* DeveloperPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C2791A2C35922D003362E2 /* DeveloperPreview.swift */; };
-		63C279202C36DA3D003362E2 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C2791F2C36DA3D003362E2 /* WeatherViewModel.swift */; };
-		63C279222C36DA4A003362E2 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C279212C36DA4A003362E2 /* WeatherModel.swift */; };
-		63C279242C36DBD2003362E2 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C279232C36DBD2003362E2 /* LocationManager.swift */; };
-		63C279262C36DC4E003362E2 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C279252C36DC4E003362E2 /* WeatherService.swift */; };
+		63CC6F132C5E623700720D77 /* Computation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CC6F122C5E623700720D77 /* Computation.swift */; };
+		63CC6F142C5E624200720D77 /* Computation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CC6F122C5E623700720D77 /* Computation.swift */; };
+		63CC6F152C5E625E00720D77 /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635BD58E2C319E70005CFF31 /* UserProfileViewModel.swift */; };
+		63CC6F162C5E625E00720D77 /* DeviceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63092A962C338D40002F9C92 /* DeviceViewModel.swift */; };
+		63CC6F182C5E626F00720D77 /* DeveloperPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CC6F172C5E626F00720D77 /* DeveloperPreview.swift */; };
+		63CC6F192C5E627400720D77 /* DeveloperPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CC6F172C5E626F00720D77 /* DeveloperPreview.swift */; };
 		63F5668D2C358B6300ED81D3 /* Vertanom_WatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F5668C2C358B6300ED81D3 /* Vertanom_WatchApp.swift */; };
 		63F566912C358B6500ED81D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63F566902C358B6500ED81D3 /* Assets.xcassets */; };
 		63F566942C358B6500ED81D3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63F566932C358B6500ED81D3 /* Preview Assets.xcassets */; };
@@ -155,7 +144,6 @@
 		634E65A22C3AC128006FBBFA /* AddDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceView.swift; sourceTree = "<group>"; };
 		634E65A72C3B5235006FBBFA /* Tip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tip.swift; sourceTree = "<group>"; };
 		634E65A92C3C35B7006FBBFA /* ArticlesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesModel.swift; sourceTree = "<group>"; };
-		634E65AB2C3C3605006FBBFA /* ArticlesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesViewModel.swift; sourceTree = "<group>"; };
 		634E65AE2C3C3A94006FBBFA /* ArticlesCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesCard.swift; sourceTree = "<group>"; };
 		635AD45A2C4946B8009EC7CC /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		635BD5392C3052B1005CFF31 /* Vertanom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vertanom.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -180,8 +168,10 @@
 		635BD58A2C3198B3005CFF31 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		635BD58C2C319C72005CFF31 /* UserProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileModel.swift; sourceTree = "<group>"; };
 		635BD58E2C319E70005CFF31 /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
-		635BD5902C31A2E1005CFF31 /* DeveloperPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperPreview.swift; sourceTree = "<group>"; };
-		635BD5922C32656E005CFF31 /* WeatherCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCard.swift; sourceTree = "<group>"; };
+		6396A43D2C52A61E006E1694 /* ArticlesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesViewModel.swift; sourceTree = "<group>"; };
+		6396A4452C53376C006E1694 /* DeviceSystemControlStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSystemControlStatus.swift; sourceTree = "<group>"; };
+		6396A4472C53377F006E1694 /* DeviceStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceStatisticsView.swift; sourceTree = "<group>"; };
+		6396A4492C5368A3006E1694 /* DeviceViewOptionModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceViewOptionModal.swift; sourceTree = "<group>"; };
 		639C855A2C38E024000014B3 /* Vertanom-WidgetKitExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Vertanom-WidgetKitExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		639C855C2C38E024000014B3 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = /System/Library/Frameworks/WidgetKit.framework; sourceTree = "<absolute>"; };
 		639C855E2C38E024000014B3 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = /System/Library/Frameworks/SwiftUI.framework; sourceTree = "<absolute>"; };
@@ -192,32 +182,12 @@
 		639C85692C38E026000014B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		639C856A2C38E026000014B3 /* Vertanom_WidgetKit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Vertanom_WidgetKit.entitlements; sourceTree = "<group>"; };
 		63C278E32C359223003362E2 /* DeviceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailView.swift; sourceTree = "<group>"; };
-		63C278E52C359223003362E2 /* AddDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceView.swift; sourceTree = "<group>"; };
-		63C278E72C359223003362E2 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
-		63C278E92C359223003362E2 /* ReportIssue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportIssue.swift; sourceTree = "<group>"; };
-		63C278EB2C359223003362E2 /* About.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = About.swift; sourceTree = "<group>"; };
-		63C278EC2C359223003362E2 /* DeveloperDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperDetailView.swift; sourceTree = "<group>"; };
-		63C278EE2C359223003362E2 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
-		63C278F02C359223003362E2 /* ArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
 		63C278F22C359223003362E2 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
-		63C278F32C359223003362E2 /* WeatherCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCard.swift; sourceTree = "<group>"; };
 		63C278F42C359223003362E2 /* DeviceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCard.swift; sourceTree = "<group>"; };
 		63C278F62C359223003362E2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		63C278F72C359223003362E2 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
-		63C278F82C359223003362E2 /* AddSensorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSensorData.swift; sourceTree = "<group>"; };
-		63C278FA2C359223003362E2 /* AddSensorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSensorViewModel.swift; sourceTree = "<group>"; };
-		63C278FB2C359223003362E2 /* DevelopersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevelopersViewModel.swift; sourceTree = "<group>"; };
-		63C278FC2C359223003362E2 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
-		63C278FD2C359223003362E2 /* DeviceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceViewModel.swift; sourceTree = "<group>"; };
-		63C278FF2C359223003362E2 /* AddSensorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSensorModel.swift; sourceTree = "<group>"; };
-		63C279002C359223003362E2 /* Developers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Developers.swift; sourceTree = "<group>"; };
-		63C279012C359223003362E2 /* UserProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileModel.swift; sourceTree = "<group>"; };
-		63C279022C359223003362E2 /* DeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceModel.swift; sourceTree = "<group>"; };
-		63C2791A2C35922D003362E2 /* DeveloperPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperPreview.swift; sourceTree = "<group>"; };
-		63C2791F2C36DA3D003362E2 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
-		63C279212C36DA4A003362E2 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
-		63C279232C36DBD2003362E2 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		63C279252C36DC4E003362E2 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
+		63CC6F122C5E623700720D77 /* Computation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Computation.swift; sourceTree = "<group>"; };
+		63CC6F172C5E626F00720D77 /* DeveloperPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperPreview.swift; sourceTree = "<group>"; };
 		63F5668A2C358B6300ED81D3 /* Vertanom-Watch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Vertanom-Watch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63F5668C2C358B6300ED81D3 /* Vertanom_WatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vertanom_WatchApp.swift; sourceTree = "<group>"; };
 		63F566902C358B6500ED81D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -300,13 +270,6 @@
 			path = AddDevices;
 			sourceTree = "<group>";
 		};
-		634E65AD2C3C360B006FBBFA /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		635BD5302C3052B1005CFF31 = {
 			isa = PBXGroup;
 			children = (
@@ -379,7 +342,6 @@
 				635BD5802C31493E005CFF31 /* Developers.swift */,
 				635BD58C2C319C72005CFF31 /* UserProfileModel.swift */,
 				635AD45A2C4946B8009EC7CC /* Device.swift */,
-				63C279212C36DA4A003362E2 /* WeatherModel.swift */,
 				634E65A92C3C35B7006FBBFA /* ArticlesModel.swift */,
 			);
 			path = Model;
@@ -388,11 +350,10 @@
 		635BD5672C3052C1005CFF31 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				6396A43D2C52A61E006E1694 /* ArticlesViewModel.swift */,
 				635BD5822C314962005CFF31 /* DevelopersViewModel.swift */,
 				635BD58E2C319E70005CFF31 /* UserProfileViewModel.swift */,
 				63092A962C338D40002F9C92 /* DeviceViewModel.swift */,
-				63C2791F2C36DA3D003362E2 /* WeatherViewModel.swift */,
-				634E65AB2C3C3605006FBBFA /* ArticlesViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -400,7 +361,6 @@
 		635BD5682C3052C8005CFF31 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				634E65AD2C3C360B006FBBFA /* New Group */,
 				634E65A42C3AD0D3006FBBFA /* AddDevices */,
 				630CC95D2C33C35000C57D0C /* DeviceDetail */,
 				635BD5892C319896005CFF31 /* Activity */,
@@ -418,11 +378,10 @@
 		635BD5692C3052D8005CFF31 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				63CC6F172C5E626F00720D77 /* DeveloperPreview.swift */,
+				63CC6F122C5E623700720D77 /* Computation.swift */,
 				635BD5402C3052B3005CFF31 /* Assets.xcassets */,
 				635BD53C2C3052B1005CFF31 /* VertanomApp.swift */,
-				635BD5902C31A2E1005CFF31 /* DeveloperPreview.swift */,
-				63C279232C36DBD2003362E2 /* LocationManager.swift */,
-				63C279252C36DC4E003362E2 /* WeatherService.swift */,
 				634E65A72C3B5235006FBBFA /* Tip.swift */,
 			);
 			path = Other;
@@ -432,7 +391,6 @@
 			isa = PBXGroup;
 			children = (
 				635BD56E2C305314005CFF31 /* DashboardView.swift */,
-				635BD5922C32656E005CFF31 /* WeatherCard.swift */,
 				63092A8F2C327BBF002F9C92 /* DeviceCard.swift */,
 			);
 			path = Dashboard;
@@ -506,64 +464,17 @@
 			isa = PBXGroup;
 			children = (
 				63C278E32C359223003362E2 /* DeviceDetailView.swift */,
+				6396A4452C53376C006E1694 /* DeviceSystemControlStatus.swift */,
+				6396A4472C53377F006E1694 /* DeviceStatisticsView.swift */,
+				6396A4492C5368A3006E1694 /* DeviceViewOptionModal.swift */,
 			);
 			path = DeviceDetail;
-			sourceTree = "<group>";
-		};
-		63C278E62C359223003362E2 /* AddDevice */ = {
-			isa = PBXGroup;
-			children = (
-				63C278E52C359223003362E2 /* AddDeviceView.swift */,
-			);
-			path = AddDevice;
-			sourceTree = "<group>";
-		};
-		63C278E82C359223003362E2 /* Activity */ = {
-			isa = PBXGroup;
-			children = (
-				63C278E72C359223003362E2 /* Activity.swift */,
-			);
-			path = Activity;
-			sourceTree = "<group>";
-		};
-		63C278EA2C359223003362E2 /* ReportIssue */ = {
-			isa = PBXGroup;
-			children = (
-				63C278E92C359223003362E2 /* ReportIssue.swift */,
-			);
-			path = ReportIssue;
-			sourceTree = "<group>";
-		};
-		63C278ED2C359223003362E2 /* About */ = {
-			isa = PBXGroup;
-			children = (
-				63C278EB2C359223003362E2 /* About.swift */,
-				63C278EC2C359223003362E2 /* DeveloperDetailView.swift */,
-			);
-			path = About;
-			sourceTree = "<group>";
-		};
-		63C278EF2C359223003362E2 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				63C278EE2C359223003362E2 /* Profile.swift */,
-			);
-			path = Profile;
-			sourceTree = "<group>";
-		};
-		63C278F12C359223003362E2 /* Articles */ = {
-			isa = PBXGroup;
-			children = (
-				63C278F02C359223003362E2 /* ArticleView.swift */,
-			);
-			path = Articles;
 			sourceTree = "<group>";
 		};
 		63C278F52C359223003362E2 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
 				63C278F22C359223003362E2 /* DashboardView.swift */,
-				63C278F32C359223003362E2 /* WeatherCard.swift */,
 				63C278F42C359223003362E2 /* DeviceCard.swift */,
 			);
 			path = Dashboard;
@@ -573,57 +484,17 @@
 			isa = PBXGroup;
 			children = (
 				63C278E42C359223003362E2 /* DeviceDetail */,
-				63C278E62C359223003362E2 /* AddDevice */,
-				63C278E82C359223003362E2 /* Activity */,
-				63C278EA2C359223003362E2 /* ReportIssue */,
-				63C278ED2C359223003362E2 /* About */,
-				63C278EF2C359223003362E2 /* Profile */,
-				63C278F12C359223003362E2 /* Articles */,
 				63C278F52C359223003362E2 /* Dashboard */,
 				63C278F62C359223003362E2 /* ContentView.swift */,
 				63C278F72C359223003362E2 /* MainTabView.swift */,
-				63C278F82C359223003362E2 /* AddSensorData.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		63C278FE2C359223003362E2 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				63C278FA2C359223003362E2 /* AddSensorViewModel.swift */,
-				63C278FB2C359223003362E2 /* DevelopersViewModel.swift */,
-				63C278FC2C359223003362E2 /* UserViewModel.swift */,
-				63C278FD2C359223003362E2 /* DeviceViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		63C279032C359223003362E2 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				63C278FF2C359223003362E2 /* AddSensorModel.swift */,
-				63C279002C359223003362E2 /* Developers.swift */,
-				63C279012C359223003362E2 /* UserProfileModel.swift */,
-				63C279022C359223003362E2 /* DeviceModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		63C2791C2C359288003362E2 /* Other */ = {
-			isa = PBXGroup;
-			children = (
-				63C2791A2C35922D003362E2 /* DeveloperPreview.swift */,
-			);
-			path = Other;
 			sourceTree = "<group>";
 		};
 		63F5668B2C358B6300ED81D3 /* Vertanom-Watch Watch App */ = {
 			isa = PBXGroup;
 			children = (
-				63C2791C2C359288003362E2 /* Other */,
 				63C278F92C359223003362E2 /* View */,
-				63C278FE2C359223003362E2 /* ViewModel */,
-				63C279032C359223003362E2 /* Model */,
 				63F5668C2C358B6300ED81D3 /* Vertanom_WatchApp.swift */,
 				63F566902C358B6500ED81D3 /* Assets.xcassets */,
 				63F566922C358B6500ED81D3 /* Preview Content */,
@@ -910,10 +781,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				635BD58B2C3198B3005CFF31 /* Activity.swift in Sources */,
-				634E65AC2C3C3605006FBBFA /* ArticlesViewModel.swift in Sources */,
 				63092A972C338D40002F9C92 /* DeviceViewModel.swift in Sources */,
 				635BD58D2C319C72005CFF31 /* UserProfileModel.swift in Sources */,
-				63C279202C36DA3D003362E2 /* WeatherViewModel.swift in Sources */,
 				635BD53F2C3052B1005CFF31 /* ContentView.swift in Sources */,
 				635BD5772C311037005CFF31 /* ArticleDetailView.swift in Sources */,
 				634E65AF2C3C3A94006FBBFA /* ArticlesCard.swift in Sources */,
@@ -926,18 +795,16 @@
 				635BD57A2C312B55005CFF31 /* Profile.swift in Sources */,
 				630CC95F2C33C38100C57D0C /* DeviceDetailView.swift in Sources */,
 				635AD45B2C4946B8009EC7CC /* Device.swift in Sources */,
-				635BD5932C32656E005CFF31 /* WeatherCard.swift in Sources */,
 				635BD5882C3192AC005CFF31 /* ReportIssue.swift in Sources */,
 				634E65A32C3AC128006FBBFA /* AddDeviceView.swift in Sources */,
+				63CC6F132C5E623700720D77 /* Computation.swift in Sources */,
 				635BD58F2C319E70005CFF31 /* UserProfileViewModel.swift in Sources */,
 				635BD5852C314C74005CFF31 /* DeveloperDetailView.swift in Sources */,
-				63C279222C36DA4A003362E2 /* WeatherModel.swift in Sources */,
-				63C279262C36DC4E003362E2 /* WeatherService.swift in Sources */,
+				63CC6F182C5E626F00720D77 /* DeveloperPreview.swift in Sources */,
 				634E65AA2C3C35B7006FBBFA /* ArticlesModel.swift in Sources */,
-				63C279242C36DBD2003362E2 /* LocationManager.swift in Sources */,
 				634E65A82C3B5235006FBBFA /* Tip.swift in Sources */,
+				6396A4422C52A61E006E1694 /* ArticlesViewModel.swift in Sources */,
 				635BD5712C3053B9005CFF31 /* MainTabView.swift in Sources */,
-				635BD5912C31A2E1005CFF31 /* DeveloperPreview.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -973,29 +840,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				63F5668D2C358B6300ED81D3 /* Vertanom_WatchApp.swift in Sources */,
-				63C279042C359223003362E2 /* ReportIssue.swift in Sources */,
-				63C279052C359223003362E2 /* Profile.swift in Sources */,
-				63C279062C359223003362E2 /* Activity.swift in Sources */,
-				63C279072C359223003362E2 /* Developers.swift in Sources */,
-				63C279082C359223003362E2 /* DeviceViewModel.swift in Sources */,
 				63C279092C359223003362E2 /* DeviceDetailView.swift in Sources */,
-				63C2790A2C359223003362E2 /* DeviceModel.swift in Sources */,
-				63C2790B2C359223003362E2 /* About.swift in Sources */,
-				63C2790C2C359223003362E2 /* AddSensorViewModel.swift in Sources */,
+				63420B032C549DFB00F5A5EC /* ArticlesModel.swift in Sources */,
+				63420B042C549DFB00F5A5EC /* Developers.swift in Sources */,
+				63420B052C549DFB00F5A5EC /* Device.swift in Sources */,
+				63420B062C549DFB00F5A5EC /* UserProfileModel.swift in Sources */,
 				63C2790D2C359223003362E2 /* DeviceCard.swift in Sources */,
-				63C2790E2C359223003362E2 /* UserProfileModel.swift in Sources */,
 				63C2790F2C359223003362E2 /* ContentView.swift in Sources */,
-				63C279102C359223003362E2 /* AddDeviceView.swift in Sources */,
-				63C279112C359223003362E2 /* DevelopersViewModel.swift in Sources */,
-				63C279122C359223003362E2 /* WeatherCard.swift in Sources */,
-				63C279132C359223003362E2 /* AddSensorData.swift in Sources */,
-				63C279142C359223003362E2 /* AddSensorModel.swift in Sources */,
-				63C279152C359223003362E2 /* UserViewModel.swift in Sources */,
-				63C279162C359223003362E2 /* DeveloperDetailView.swift in Sources */,
-				63C2791B2C35922D003362E2 /* DeveloperPreview.swift in Sources */,
-				63C279172C359223003362E2 /* ArticleView.swift in Sources */,
+				6396A44A2C5368A3006E1694 /* DeviceViewOptionModal.swift in Sources */,
+				63CC6F152C5E625E00720D77 /* UserProfileViewModel.swift in Sources */,
+				63CC6F162C5E625E00720D77 /* DeviceViewModel.swift in Sources */,
+				6396A4462C53376C006E1694 /* DeviceSystemControlStatus.swift in Sources */,
+				6396A4482C53377F006E1694 /* DeviceStatisticsView.swift in Sources */,
 				63C279182C359223003362E2 /* DashboardView.swift in Sources */,
+				63CC6F142C5E624200720D77 /* Computation.swift in Sources */,
 				63C279192C359223003362E2 /* MainTabView.swift in Sources */,
+				63CC6F192C5E627400720D77 /* DeveloperPreview.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1192,10 +1052,12 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tristanlistanco.Vertanom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1230,10 +1092,12 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tristanlistanco.Vertanom;
 				PRODUCT_NAME = "$(TARGET_NAME)";

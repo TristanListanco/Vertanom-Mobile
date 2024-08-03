@@ -8,19 +8,14 @@
 import SwiftUI
 
 struct MainTabView: View {
-    
     var body: some View {
         TabView {
             DashboardView()
-                .tabItem { Label("Home", systemImage: "house") }
-            About()
-                .tabItem { Label("About", systemImage: "info.circle") }
+                .containerBackground(Color.accentColor.gradient, for: .tabView)
         }
-
     }
 }
 
 #Preview {
-
     MainTabView()
 }

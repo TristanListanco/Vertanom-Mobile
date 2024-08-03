@@ -63,10 +63,4 @@ struct DeviceInstructions: Tip {
     var image: Image? {
         Image(systemName: "network")
     }
-
-//    var actions: [Action] {
-//        [
-//            Tip.Action(id: "learn-more", title: "Learn More")
-//        ]
-//    }
 }

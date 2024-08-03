@@ -9,69 +9,47 @@ import SwiftUI
 
 struct DeviceCard: View {
     @ObservedObject var viewModel: DeviceViewModel
+
     var body: some View {
         NavigationLink(destination: DeviceDetailView(deviceViewModel: viewModel)) {
-            VStack(alignment: .leading, spacing: 2) {
+            VStack(alignment: .leading, spacing: 3) {
                 Text(viewModel.device.name)
-                    .font(.subheadline)
+                    .font(.headline)
                     .fontWeight(.bold)
-                    .foregroundColor(.primary) // Adjust text color
-
-                Text(viewModel.device.location)
-                    .font(.subheadline)
-                    .foregroundColor(.secondary) // Adjust text color
 
                 Label(viewModel.device.location, systemImage: "location.fill")
-                    .foregroundColor(.secondary) // Adjust text color
-                    .font(.caption)
-                VStack {
-                    Text(viewModel.device.status)
-                        .font(.footnote)
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 4)
-                        .background(statusColor)
-                        .clipShape(Capsule())
-                }
-                .padding(.vertical)
+                    .font(.footnote)
             }
-            .padding(.vertical, 4)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .padding()
+            .cornerRadius(4)
+            .shadow(radius: 2)
         }
-        .frame(maxWidth: .infinity, alignment: .leading) // Make the VStack take full width and align leading
-        .frame(minHeight: 100)
-    }
-
-    // Computed property to determine the background color based on the status
-    private var statusColor: Color {
-        switch viewModel.device.status.lowercased() {
-        case "running":
-            return .green
-        case "idle":
-            return .yellow
-        case "offline":
-            return .red
-        case "maintenance":
-            return .orange
-        case "locked":
-            return .blue
-        default:
-            return .gray
-        }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
-#Preview {
-    let sampleDevice = Device(
-        id: "12345",
-        name: "Weather Station",
-        location: "San Francisco",
-        lastUpdated: "10:00 AM",
-        status: "RUNNING"
-    )
+struct DeviceCard_Previews: PreviewProvider {
+    static var previews: some View {
+        let sampleSensorData = [
+            SensorValue(date: Date(), value: 50),
+            SensorValue(date: Calendar.current.date(byAdding: .day, value: -1, to: Date())!, value: 55),
+            SensorValue(date: Calendar.current.date(byAdding: .day, value: -2, to: Date())!, value: 60)
+        ]
 
-    let viewModel = DeviceViewModel(device: sampleDevice)
+        let sampleDevice = Device(
+            id: UUID().uuidString,
+            name: "Weather Station",
+            location: "San Francisco",
+            lastUpdated: "10:00 AM",
+            status: .online,
+            temperatureData: sampleSensorData,
+            pHData: sampleSensorData,
+            humidityData: sampleSensorData,
+            soilNutrientData: sampleSensorData
+        )
 
-    return DeviceCard(viewModel: viewModel)
+        let viewModel = DeviceViewModel(device: sampleDevice)
+
+        DeviceCard(viewModel: viewModel)
+    }
 }

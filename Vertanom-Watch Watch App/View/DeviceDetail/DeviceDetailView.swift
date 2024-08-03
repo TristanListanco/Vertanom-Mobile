@@ -78,12 +78,10 @@ struct DeviceDetailView: View {
                 .chartXAxis {
                     AxisMarks(stroke: StrokeStyle(lineWidth: 0)) // Hides X axis
                 }
-                .chartYAxis {
-                    AxisMarks(stroke: StrokeStyle(lineWidth: 0))
-                }
+                .chartYAxis(.hidden)
 
                 .animation(.default, value: selectedDeviceData)
-                Spacer()
+              
                 VStack(alignment: .leading) {
                     HStack {
                         Image(systemName: selectedDataType.iconName)

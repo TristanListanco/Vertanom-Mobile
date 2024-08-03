@@ -69,9 +69,11 @@ struct DeviceDetailView: View {
                         x: .value("Time", element.date, unit: .day),
                         y: .value("Value", element.value)
                     )
-                    .foregroundStyle(.white)
+                    .foregroundStyle(
+                        Color.accentColor.opacity(0.7).blendMode(.overlay)
+                    )
+
                     .clipShape(RoundedRectangle(cornerRadius: 12))
-                    .opacity(0.6)
                 }
                 .chartXAxis {
                     AxisMarks(stroke: StrokeStyle(lineWidth: 0)) // Hides X axis
@@ -85,19 +87,22 @@ struct DeviceDetailView: View {
                 VStack(alignment: .leading) {
                     HStack {
                         Image(systemName: selectedDataType.iconName)
+                            .foregroundStyle(.tertiary)
                             .opacity(0.7)
                         Text(selectedDataType.rawValue)
                             .font(.footnote)
-                            .fontWeight(.bold)
+                            .fontWeight(.bold).foregroundStyle(.tertiary)
                             .opacity(0.7)
                     }
                     Text(deviceViewModel.device.name)
                         .font(.headline)
                         .fontWeight(.medium)
+                        .foregroundStyle(.primary)
                         .contentTransition(.numericText())
                         .animation(.default, value: latestValue)
                     Text("\(latestValue, specifier: "%.2f")")
-                        .font(.title3)
+                        .font(.title2)
+                        .foregroundStyle(.primary)
                         .fontWeight(.bold)
                         .contentTransition(.numericText())
                         .animation(.default, value: latestValue)

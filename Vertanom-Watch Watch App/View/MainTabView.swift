@@ -11,7 +11,7 @@ struct MainTabView: View {
     var body: some View {
         TabView {
             DashboardView()
-                .containerBackground(Color.accentColor.gradient, for: .tabView)
+                .containerBackground(Color.accentColor.gradient, for: .tabView)               
         }
     }
 }
